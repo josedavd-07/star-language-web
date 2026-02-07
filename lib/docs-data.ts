@@ -34,15 +34,39 @@ StarFunction Main() {
         title: "Installation",
         slug: "install",
         content: `# Installation Guide
-Get started with Star on your preferred operating system.
+Get started with Star.
 
-## 🐧 Linux (Debian/Ubuntu)
-Run our automated installation script:
+## 🐧 Linux (Recommended)
+First, clean up any previous installation attempts:
+\`\`\`bash
+sudo rm /etc/apt/sources.list.d/star-language.list
+sudo apt update
+\`\`\`
+
+Then run the official one-liner installer:
 \`\`\`bash
 curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash
 \`\`\`
 
-This will download and install the latest version of Star Language.
+---
+
+## 🚀 Getting Started
+
+Once installed, verify your version:
+\`\`\`bash
+star --version
+\`\`\`
+
+Create your first project:
+\`\`\`bash
+star new MyFirstGalaxy
+cd MyFirstGalaxy
+\`\`\`
+
+Run your project:
+\`\`\`bash
+star run
+\`\`\`
 
 ## 🪟 Windows (PowerShell)
 Execute the following in a PowerShell window:
@@ -55,42 +79,6 @@ Install directly via Homebrew:
 \`\`\`bash
 brew tap josedavd-07/star-apt-repo
 brew install star
-\`\`\`
-
-## CLI Verification
-\`\`\`bash
-star --version
-\`\`\`
-
----
-
-## 🧹 Cleanup (If you had previous installation errors)
-If you previously tried to install and got errors, clean up first:
-\`\`\`bash
-sudo rm /etc/apt/sources.list.d/star-language.list
-sudo apt update
-\`\`\`
-
-Then run the installation command above.
-
----
-
-## 🚀 Getting Started
-
-### Create Your First Project
-\`\`\`bash
-star new MyFirstGalaxy
-cd MyFirstGalaxy
-\`\`\`
-
-### Run Your Code
-\`\`\`bash
-star run
-\`\`\`
-
-### Build an Executable
-\`\`\`bash
-star build
 \`\`\``
     },
     {
