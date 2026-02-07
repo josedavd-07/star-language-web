@@ -26,6 +26,7 @@ StarName Galaxy.Hello;
 
 StarFunction Main() {
     EmitLn("🚀 Ignition sequence start!");
+    EmitLn("Star is officially in orbit.");
 }
 \`\`\``
     },
@@ -88,24 +89,24 @@ Guide your mission through logic gates.
 \`\`\`star
 When (fuel > 10) {
     EmitLn("Safe to launch");
-} Else {
+} Otherwise {
     EmitLn("Refuel required");
 }
 \`\`\`
 
 ## Loops
+### Orbit (For)
+\`\`\`star
+Orbit (Int i = 0; i < 5; i = i + 1) {
+    EmitLn("Scanning quadrant " + i);
+}
+\`\`\`
+
 ### While
 \`\`\`star
 While (orbitCount < 10) {
     EmitLn("Orbiting...");
     orbitCount = orbitCount + 1;
-}
-\`\`\`
-
-### For
-\`\`\`star
-For (Int i = 0; i < 5; i = i + 1) {
-    EmitLn("Scanning quadrant " + i);
 }
 \`\`\``
     },
@@ -122,7 +123,7 @@ Constellation Spaceship {
     Private Int Fuel = 100;
 
     Public StarFunction Launch() {
-        If (Fuel > 0) {
+        When (Fuel > 0) {
             EmitLn(Name + " is launching!");
         }
     }
@@ -144,9 +145,10 @@ Constellation Rocket : Spaceship {
         content: `# CLI Reference
 The \`star\` command-line interface is your mission control.
 
-- **star new <name>**: Create a new Star project.
-- **star run**: Execute the current project mission.
-- **star build**: Compile into a standalone binary.
+- **star new <name>**: Create a new Star project (constellation).
+- **star run [file.st]**: Execute the current project mission.
+- **star build [file.st]**: Compile into a standalone binary for deployment.
+- **star help**: Show navigation guide for all commands.
 - **star --version**: Check compiler version.`
     }
 ];

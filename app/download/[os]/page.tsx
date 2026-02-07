@@ -19,7 +19,11 @@ const OS_DATA: Record<string, any> = {
         ],
         commands: [
             {
-                label: "APT Repository (Recommended)",
+                label: "One-liner Install (Easiest)",
+                code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo./install.sh | sudo bash`
+            },
+            {
+                label: "Manual APT Setup",
                 code: `# Import GPG key\nwget -qO - https://josedavd-07.github.io/star-apt-repo./key.gpg | sudo apt-key add -\n\n# Add repo\necho "deb [arch=amd64] https://josedavd-07.github.io/star-apt-repo./ stable main" | sudo tee /etc/apt/sources.list.d/star-language.list\n\n# Install\nsudo apt update && sudo apt install star-language`
             }
         ]
