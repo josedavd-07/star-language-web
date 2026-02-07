@@ -42,10 +42,7 @@ Run our automated installation script:
 curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash
 \`\`\`
 
-Then install the compiler:
-\`\`\`bash
-sudo apt install star-language
-\`\`\`
+This will download and install the latest version of Star Language.
 
 ## 🪟 Windows (PowerShell)
 Execute the following in a PowerShell window:

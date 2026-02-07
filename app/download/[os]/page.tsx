@@ -19,12 +19,8 @@ const OS_DATA: Record<string, any> = {
         ],
         commands: [
             {
-                label: "One-liner Install (Recommended)",
+                label: "One-liner Install",
                 code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash`
-            },
-            {
-                label: "Install Compiler",
-                code: `sudo apt install star-language`
             }
         ]
     },
