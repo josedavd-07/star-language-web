@@ -60,6 +60,37 @@ brew install star
 ## CLI Verification
 \`\`\`bash
 star --version
+\`\`\`
+
+---
+
+## 🧹 Cleanup (If you had previous installation errors)
+If you previously tried to install and got errors, clean up first:
+\`\`\`bash
+sudo rm /etc/apt/sources.list.d/star-language.list
+sudo apt update
+\`\`\`
+
+Then run the installation command above.
+
+---
+
+## 🚀 Getting Started
+
+### Create Your First Project
+\`\`\`bash
+star new MyFirstGalaxy
+cd MyFirstGalaxy
+\`\`\`
+
+### Run Your Code
+\`\`\`bash
+star run
+\`\`\`
+
+### Build an Executable
+\`\`\`bash
+star build
 \`\`\``
     },
     {
