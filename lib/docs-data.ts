@@ -37,14 +37,14 @@ StarFunction Main() {
 Get started with Star.
 
 ## 🐧 Linux (Recommended)
-First, clean up any previous installation attempts:
+Clean up any previous installation attempts and install Star:
+
 \`\`\`bash
+# Limpia el error anterior
 sudo rm /etc/apt/sources.list.d/star-language.list
 sudo apt update
-\`\`\`
 
-Then run the official one-liner installer:
-\`\`\`bash
+# Instala con el comando correcto
 curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash
 \`\`\`
 
