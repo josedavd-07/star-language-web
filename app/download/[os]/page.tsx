@@ -20,11 +20,11 @@ const OS_DATA: Record<string, any> = {
         commands: [
             {
                 label: "One-liner Install (Easiest)",
-                code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo./install.sh | sudo bash`
+                code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash`
             },
             {
                 label: "Manual APT Setup",
-                code: `# Import GPG key\nwget -qO - https://josedavd-07.github.io/star-apt-repo./key.gpg | sudo apt-key add -\n\n# Add repo\necho "deb [arch=amd64] https://josedavd-07.github.io/star-apt-repo./ stable main" | sudo tee /etc/apt/sources.list.d/star-language.list\n\n# Install\nsudo apt update && sudo apt install star-language`
+                code: `# Import GPG key\nwget -qO - https://josedavd-07.github.io/star-apt-repo/key.gpg | sudo apt-key add -\n\n# Add repo\necho "deb [arch=amd64] https://josedavd-07.github.io/star-apt-repo/ stable main" | sudo tee /etc/apt/sources.list.d/star-language.list\n\n# Install\nsudo apt update && sudo apt install star-language`
             }
         ]
     },
@@ -39,7 +39,7 @@ const OS_DATA: Record<string, any> = {
         commands: [
             {
                 label: "PowerShell Installation",
-                code: `iwr https://josedavd-07.github.io/star-apt-repo./install-windows.ps1 -useb | iex`
+                code: `iwr https://josedavd-07.github.io/star-apt-repo/install-windows.ps1 -useb | iex`
             }
         ]
     },
@@ -54,11 +54,11 @@ const OS_DATA: Record<string, any> = {
         commands: [
             {
                 label: "Homebrew (Recommended)",
-                code: `brew tap josedavd-07/star-apt-repo.\nbrew install star`
+                code: `brew tap josedavd-07/star-apt-repo\nbrew install star`
             },
             {
                 label: "Manual Install Script",
-                code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo./install-mac.sh | bash`
+                code: `curl -fsSL https://josedavd-07.github.io/star-apt-repo/install-mac.sh | bash`
             }
         ]
     }

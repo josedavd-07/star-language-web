@@ -39,19 +39,19 @@ Get started with Star on your preferred operating system using our official repo
 ## 🐧 Linux (Debian/Ubuntu)
 Run our automated installation script:
 \`\`\`bash
-curl -fsSL https://josedavd-07.github.io/star-apt-repo./install.sh | sudo bash
+curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash
 \`\`\`
 
 ## 🪟 Windows (PowerShell)
 Execute the following in a PowerShell window:
 \`\`\`powershell
-iwr https://josedavd-07.github.io/star-apt-repo./install-windows.ps1 -useb | iex
+iwr https://josedavd-07.github.io/star-apt-repo/install-windows.ps1 -useb | iex
 \`\`\`
 
 ## 🍎 macOS (Homebrew)
 Install directly via Homebrew:
 \`\`\`bash
-brew tap josedavd-07/star-apt-repo.
+brew tap josedavd-07/star-apt-repo
 brew install star
 \`\`\`
 
