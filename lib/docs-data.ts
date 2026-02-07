@@ -34,12 +34,17 @@ StarFunction Main() {
         title: "Installation",
         slug: "install",
         content: `# Installation Guide
-Get started with Star on your preferred operating system using our official repository.
+Get started with Star on your preferred operating system.
 
 ## 🐧 Linux (Debian/Ubuntu)
 Run our automated installation script:
 \`\`\`bash
 curl -fsSL https://josedavd-07.github.io/star-apt-repo/install.sh | sudo bash
+\`\`\`
+
+Then install the compiler:
+\`\`\`bash
+sudo apt install star-language
 \`\`\`
 
 ## 🪟 Windows (PowerShell)
