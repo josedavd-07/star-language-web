@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, Github, Moon, Sun, Download, Rocket } from 'lucide-react';
+import { Menu, X, Github, Rocket } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MOON_TECHNOLOGIES, STAR_MARKETPLACE, STAR_RELEASES, STAR_REPOSITORY, STARPACKAGES_REPOSITORY, STARSTUDIO_REPOSITORY } from '@/lib/github';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className="absolute w-full z-50 bg-transparent py-10">
+        <nav className={`absolute w-full z-50 py-6 transition-colors ${scrolled ? 'bg-brand-space/85 backdrop-blur-xl border-b border-white/5' : 'bg-transparent py-10'}`}>
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
                 <div className="flex justify-between items-center">
                     {/* Logo */}
@@ -34,22 +35,24 @@ export default function Navbar() {
 
                     {/* Desktop Menu */}
                     <div className="hidden lg:flex items-center gap-10">
-                        <NavLink href="/#features">Exploration</NavLink>
-                        <NavLink href="/docs">Orbit Docs</NavLink>
-                        <NavLink href="https://github.com/josedavd-07/Star/releases/latest">Deploy</NavLink>
+                        <NavLink href="/#features">Language</NavLink>
+                        <NavLink href="/docs">Docs</NavLink>
+                        <ExternalNavLink href={STARPACKAGES_REPOSITORY}>Packages</ExternalNavLink>
+                        <ExternalNavLink href={STARSTUDIO_REPOSITORY}>Star Studio</ExternalNavLink>
+                        <ExternalNavLink href={STAR_MARKETPLACE}>Marketplace</ExternalNavLink>
 
                         <div className="h-4 w-px bg-white/10 mx-2" />
 
                         <div className="flex items-center gap-6">
-                            <a href="https://github.com/josedavd-07/Star" target="_blank" rel="noopener noreferrer"
+                            <a href={MOON_TECHNOLOGIES} target="_blank" rel="noopener noreferrer" aria-label="Moon Technologies on GitHub"
                                 className="text-gray-400 hover:text-brand-star transition-all">
                                 <Github size={20} />
                             </a>
-                            <Link href="https://github.com/josedavd-07/Star/releases/latest"
+                            <a href={STAR_RELEASES} target="_blank" rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-5 py-2.5 bg-brand-star text-black font-black text-xs rounded-lg hover:bg-white transition-all shadow-sm"
                             >
-                                <Rocket size={14} /> START MISSION
-                            </Link>
+                                <Rocket size={14} /> RELEASES
+                            </a>
                         </div>
                     </div>
 
@@ -72,17 +75,19 @@ export default function Navbar() {
                         className="lg:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-2xl border-b border-white/5 overflow-hidden shadow-2xl"
                     >
                         <div className="flex flex-col p-8 space-y-6">
-                            <MobileNavLink href="/#features" onClick={() => setIsOpen(false)}>Exploration</MobileNavLink>
-                            <MobileNavLink href="/docs" onClick={() => setIsOpen(false)}>Orbit Docs</MobileNavLink>
-                            <MobileNavLink href="https://github.com/josedavd-07/Star/releases/latest" onClick={() => setIsOpen(false)}>Deploy</MobileNavLink>
+                            <MobileNavLink href="/#features" onClick={() => setIsOpen(false)}>Language</MobileNavLink>
+                            <MobileNavLink href="/docs" onClick={() => setIsOpen(false)}>Docs</MobileNavLink>
+                            <MobileExternalNavLink href={STARPACKAGES_REPOSITORY} onClick={() => setIsOpen(false)}>Packages</MobileExternalNavLink>
+                            <MobileExternalNavLink href={STARSTUDIO_REPOSITORY} onClick={() => setIsOpen(false)}>Star Studio</MobileExternalNavLink>
+                            <MobileExternalNavLink href={STAR_MARKETPLACE} onClick={() => setIsOpen(false)}>Marketplace</MobileExternalNavLink>
                             <div className="h-px w-full bg-white/5" />
                             <div className="flex items-center justify-between">
-                                <a href="https://github.com/josedavd-07/Star" target="_blank" className="text-gray-400 flex items-center gap-2 font-bold hover:text-brand-star transition-colors">
-                                    <Github size={20} /> GitHub Repo
+                                <a href={STAR_REPOSITORY} target="_blank" rel="noopener noreferrer" className="text-gray-400 flex items-center gap-2 font-bold hover:text-brand-star transition-colors">
+                                    <Github size={20} /> Star on GitHub
                                 </a>
-                                <Link href="https://github.com/josedavd-07/Star/releases/latest" className="bg-brand-star p-4 rounded-full text-black shadow-lg shadow-brand-star/20">
+                                <a href={STAR_RELEASES} target="_blank" rel="noopener noreferrer" aria-label="Star releases" className="bg-brand-star p-4 rounded-full text-black shadow-lg shadow-brand-star/20">
                                     <Rocket size={20} />
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </motion.div>
@@ -99,8 +104,18 @@ const NavLink = ({ href, children }: { href: string, children: React.ReactNode }
     </Link>
 );
 
+const ExternalNavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white font-black text-xs uppercase tracking-[0.2em] transition-all relative group">
+        {children}<span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-1 bg-brand-star rounded-full transition-all group-hover:w-4" />
+    </a>
+);
+
 const MobileNavLink = ({ href, onClick, children }: { href: string, onClick: () => void, children: React.ReactNode }) => (
     <Link href={href} onClick={onClick} className="block text-2xl font-black tracking-tight text-white hover:text-brand-star">
         {children}
     </Link>
+);
+
+const MobileExternalNavLink = ({ href, onClick, children }: { href: string, onClick: () => void, children: React.ReactNode }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" onClick={onClick} className="block text-2xl font-black tracking-tight text-white hover:text-brand-star">{children}</a>
 );

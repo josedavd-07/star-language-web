@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Star Language | Explore the Cosmos of Code",
-  description: "A modern, space-themed programming language with native compilation and visual elegance.",
+  title: "Star | Moon Technologies",
+  description: "The official website and documentation for Star, the space-themed programming language by Moon Technologies.",
   icons: {
     icon: [
       { url: '/extension-logo.png', sizes: 'any' },

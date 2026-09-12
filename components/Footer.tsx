@@ -1,50 +1,28 @@
-import { Github, Linkedin, Heart } from 'lucide-react';
+import { Github, Heart, Sparkles } from 'lucide-react';
+import Link from 'next/link';
+import { MOON_TECHNOLOGIES, STAR_MARKETPLACE, STAR_RELEASES, STAR_REPOSITORY } from '@/lib/github';
 
 export default function Footer() {
     return (
-        <footer className="relative z-10 py-12 border-t border-white/10 bg-brand-space/80 backdrop-blur-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    {/* Brand */}
-                    <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                            <span className="text-brand-star">✦</span> Star
-                        </h3>
-                        <p className="text-gray-400 text-sm max-w-xs">
-                            A modern, space-themed programming language designed for the next generation of explorers.
-                        </p>
+        <footer className="relative z-10 border-t border-white/10 bg-[#11151f]">
+            <div className="max-w-7xl mx-auto px-5 py-7">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between text-sm">
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-gray-400">
+                        <a href={MOON_TECHNOLOGIES} target="_blank" rel="noopener noreferrer" aria-label="Moon Technologies on GitHub" className="w-9 h-9 rounded-full border border-white/15 bg-cover bg-center hover:ring-2 hover:ring-brand-star transition-all" style={{ backgroundImage: 'url(https://github.com/Moon-TechnologiesCO.png?size=80)' }} />
+                        <Link href="/" className="flex items-center gap-2 font-black text-white tracking-tight hover:text-brand-star transition-colors"><Sparkles size={16} className="text-brand-star" /> Star</Link>
+                        <span className="hidden sm:block h-5 w-px bg-white/15" />
+                        <span>A project by</span>
+                        <a href={MOON_TECHNOLOGIES} target="_blank" rel="noopener noreferrer" className="font-bold text-brand-star hover:text-white transition-colors">Moon Technologies</a>
                     </div>
-
-                    {/* Links */}
-                    <div className="space-y-4">
-                        <h4 className="text-white font-semibold">Resources</h4>
-                        <ul className="space-y-2 text-sm text-gray-400">
-                            <li><a href="#" className="hover:text-brand-star transition-colors">Documentation</a></li>
-                            <li><a href="#" className="hover:text-brand-star transition-colors">API Reference</a></li>
-                            <li><a href="#" className="hover:text-brand-star transition-colors">Release Notes</a></li>
-                        </ul>
-                    </div>
-
-                    {/* Social */}
-                    <div className="space-y-4">
-                        <h4 className="text-white font-semibold">Connect</h4>
-                        <div className="flex gap-4">
-                            <a href="https://github.com/josedavd-07" target="_blank" className="p-2 bg-white/5 rounded-full hover:bg-brand-star/20 hover:text-brand-star transition-all">
-                                <Github size={20} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/jose-david-carranza-angarita-unity-developer/" target="_blank" className="p-2 bg-white/5 rounded-full hover:bg-brand-star/20 hover:text-brand-star transition-all">
-                                <Linkedin size={20} />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>© 2026 Star Language. All rights reserved.</p>
-                    <div className="flex items-center gap-1">
-                        <span>Created with</span>
-                        <Heart size={12} className="text-red-500 fill-red-500" />
-                        <span>by Jose David Carranza Angarita in Colombia 🇨🇴</span>
+                    <nav aria-label="Footer navigation" className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-gray-400">
+                        <a href="/docs" className="hover:text-white transition-colors">Documentation</a>
+                        <a href={STAR_RELEASES} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Download Star</a>
+                        <a href={STAR_MARKETPLACE} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">VS Code extension</a>
+                    </nav>
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-gray-400 lg:justify-end">
+                        <span>Developed with</span><Heart size={12} className="fill-red-500 text-red-500" /><span>from Colombia</span><span className="text-white/20">•</span>
+                        <a href={STAR_REPOSITORY} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-white transition-colors"><Github size={13} /> View on GitHub</a>
+                        <span className="w-full lg:text-right text-gray-600">© 2026 Moon Technologies. All rights reserved.</span>
                     </div>
                 </div>
             </div>

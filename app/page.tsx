@@ -2,17 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Code, Terminal, Zap, Star, Layout, Github, Package, Download } from "lucide-react";
+import { ArrowRight, Terminal, Zap, Layout, Package, Download, Github, Boxes, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { getStarStats, GitHubStats } from "@/lib/github";
+import { getStarStats, GitHubStats, MOON_TECHNOLOGIES, STAR_DOWNLOADS, STAR_MARKETPLACE, STAR_REPOSITORY, STARPACKAGES_REPOSITORY, STARSTUDIO_REPOSITORY, SupportedOS } from "@/lib/github";
+
+function detectPlatform(userAgent: string): SupportedOS {
+  const normalizedUserAgent = userAgent.toLowerCase();
+  if (normalizedUserAgent.includes('win')) return 'windows';
+  if (normalizedUserAgent.includes('mac')) return 'macos';
+  return 'linux';
+}
 
 export default function Home() {
-  const [stats, setStats] = useState<GitHubStats>({ stars: 0, version: 'v1.0.0' });
+  const [stats, setStats] = useState<GitHubStats>({ stars: 0, version: '1.1.0' });
+  const [platform, setPlatform] = useState<SupportedOS>('linux');
 
   useEffect(() => {
     // Initial fetch for stats
     getStarStats().then(setStats);
+    const timer = window.setTimeout(() => setPlatform(detectPlatform(navigator.userAgent)), 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
@@ -50,8 +60,7 @@ export default function Home() {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed"
           >
-            An astronomical leap in language design.
-            Native-speed compilation, space-themed semantics, and a developer-first CLI experience.
+            Moon Technologies&apos; space-themed programming language. Explore Star, its packages, documentation, and VS Code tooling from one orbit.
           </motion.p>
 
           <motion.div
@@ -61,12 +70,12 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/download/linux"
+              <a
+                href={STAR_DOWNLOADS[platform].url}
                 className="bg-brand-star text-black px-10 py-5 rounded-xl font-black text-xl hover:bg-white hover:scale-105 transition-all flex items-center gap-3 shadow-[0_15px_30px_-10px_rgba(255,255,0,0.3)]"
               >
-                Inhale Discovery <Download size={22} />
-              </Link>
+                Download for {platform === 'macos' ? 'macOS' : platform === 'windows' ? 'Windows' : 'Linux'} <Download size={22} />
+              </a>
               <Link
                 href="/docs"
                 className="px-10 py-5 rounded-xl font-bold text-xl text-white border-2 border-white/10 hover:bg-white/5 hover:border-brand-star/40 transition-all backdrop-blur-md"
@@ -75,6 +84,10 @@ export default function Home() {
               </Link>
             </div>
           </motion.div>
+          <div className="mt-10 flex justify-center gap-6 text-sm text-gray-400">
+            <span><strong className="text-white">{stats.version}</strong> current version</span>
+            <span><strong className="text-white">{stats.stars}</strong> GitHub stars</span>
+          </div>
         </div>
       </section>
 
@@ -92,23 +105,17 @@ export default function Home() {
               <div className="w-3.5 h-3.5 rounded-full bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.3)]" />
             </div>
             <div className="text-xs text-gray-500 font-mono tracking-wider flex items-center gap-2">
-              <Terminal size={14} /> src/MissionControl.st
+              <Terminal size={14} /> src/Main.st
             </div>
           </div>
           <div className="p-8 md:p-12 overflow-x-auto bg-[#0B0E14]/90">
             <pre className="font-mono text-base md:text-lg leading-loose">
               <code>
-                <span className="text-gray-500 italic">// Welcome to the Star System</span><br />
-                <span className="text-purple-400">StarName</span> <span className="text-blue-300">Galaxy.LaunchPad</span>;<br />
+                <span className="text-gray-500 italic">{'// src/Main.st'}</span><br />
+                <span className="text-purple-400">StarName</span> <span className="text-blue-300">MissionControl.Core</span>;<br />
                 <br />
-                <span className="text-brand-star font-black uppercase text-sm tracking-tighter">Constellation</span> <span className="text-yellow-200">Rocket</span> {'{'}<br />
-                &nbsp;&nbsp;<span className="text-brand-star italic">Public</span> <span className="text-blue-400">Int</span> Fuel = 100;<br />
-                <br />
-                &nbsp;&nbsp;<span className="text-brand-star font-black uppercase text-sm tracking-tighter">StarFunction</span> <span className="text-blue-300">Ignite</span>() {'{'}<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;<span className="text-brand-star italic">When</span> (Fuel &gt; 0) {'{'}<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-300">EmitLn</span>(<span className="text-green-400">"🚀 Ignition sequence start!"</span>);<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;{'}'}<br />
-                &nbsp;&nbsp;{'}'}<br />
+                <span className="text-brand-star font-black uppercase text-sm tracking-tighter">StarFunction</span> <span className="text-blue-300">Main</span>() {'{'}<br />
+                &nbsp;&nbsp;<span className="text-blue-300">EmitLn</span>(<span className="text-green-400">&quot;Bienvenido a Star: MissionControl&quot;</span>);<br />
                 {'}'}<br />
               </code>
             </pre>
@@ -124,24 +131,38 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
 
-          <FeatureCard
+              <FeatureCard
             icon={<Zap className="text-brand-star" size={36} />}
-            title="Native Compilation"
-            description="High-performance binary generation using .NET AOT technology. Fast, standalone, and ready for deployment."
+            title="Star"
+            description="The official language repository is the source of truth for compiler development, syntax, and examples."
           />
 
           <FeatureCard
             icon={<Layout className="text-brand-star" size={36} />}
-            title="Astronomical Syntax"
-            description="Designed for developers who love space. Logic flows through orbits and constellations, not just classes and loops."
+            title="StarStudio"
+            description="Professional syntax highlighting and project tools for Star in Visual Studio Code."
           />
 
           <FeatureCard
             icon={<Package className="text-brand-star" size={36} />}
-            title="Integrated Prototyping"
-            description="Built-in CLI for project scaffolding, dependency management, and instant execution of Galaxy missions."
+            title="StarPackages"
+            description="The official installation hub for Linux, Windows, and macOS guidance."
           />
 
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="glass-card rounded-[2rem] p-8 md:p-12 border-white/5">
+          <p className="text-brand-star text-xs font-black uppercase tracking-[0.3em] mb-3">Moon Technologies ecosystem</p>
+          <h2 className="text-4xl font-black text-white mb-8">Everything in one constellation.</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <EcosystemLink href={STAR_REPOSITORY} icon={<Github size={18} />} title="Star" text="Language & compiler" />
+            <EcosystemLink href={STARPACKAGES_REPOSITORY} icon={<Boxes size={18} />} title="Packages" text="Installation hub" />
+            <EcosystemLink href={STARSTUDIO_REPOSITORY} icon={<Sparkles size={18} />} title="Star Studio" text="VS Code tooling" />
+            <EcosystemLink href={STAR_MARKETPLACE} icon={<Download size={18} />} title="Marketplace" text="Install the extension" />
+          </div>
+          <a href={MOON_TECHNOLOGIES} target="_blank" rel="noopener noreferrer" className="inline-flex mt-8 items-center gap-2 text-gray-400 hover:text-brand-star font-bold transition-colors">Moon Technologies on GitHub <ArrowRight size={16} /></a>
         </div>
       </section>
 
@@ -188,4 +209,8 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactNode, titl
       </div>
     </motion.div>
   );
+}
+
+function EcosystemLink({ href, icon, title, text }: { href: string, icon: React.ReactNode, title: string, text: string }) {
+  return <a href={href} target="_blank" rel="noopener noreferrer" className="rounded-2xl p-5 bg-white/5 border border-white/5 hover:border-brand-star/40 hover:bg-brand-star/10 transition-all group"><div className="text-brand-star mb-4">{icon}</div><h3 className="font-black text-white group-hover:text-brand-star">{title}</h3><p className="text-sm text-gray-400 mt-1">{text}</p></a>;
 }
